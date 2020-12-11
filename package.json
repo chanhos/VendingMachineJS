@@ -1,0 +1,20 @@
+{
+  "name": "vendingmachinejs",
+  "version": "1.0.0",
+  "description": "VeindingMachine",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanhos/VendingMachineJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanhos/VendingMachineJS/issues"
+  },
+  "homepage": "https://github.com/chanhos/VendingMachineJS#readme"
+}

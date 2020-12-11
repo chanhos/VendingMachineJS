@@ -1,9 +1,9 @@
-function inputCash(token){
+const inputCash = function(token){
     console.log(token);
 }
 
-function changeCash(currentAmount){
+const changeCash = function (currentAmount){
     console.log(currentAmount);
 }
 
-export {inputCash ,changeCash };
+export {inputCash ,changeCash}
