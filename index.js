@@ -34,6 +34,10 @@ var controler = Object.create(null); // Controler 객체
 
 window.onload = function(){    
     createVendingMachine(document.body, 2,400,500);
+
+  
+
+    
 }
 
 
