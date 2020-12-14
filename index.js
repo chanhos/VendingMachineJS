@@ -1,4 +1,4 @@
-//import styles from './viewStyle.css';
+/*
 "use strict";
 
 class Goods {
@@ -23,8 +23,8 @@ const INITIAL_STOCKCNT = 3;
 const MINIMUM_CASHUNIT = 100;
 
 var goodsNameArray = new Array(
-    "조지아" , "비타500", "TOP아메리카노" ,"핫식스" , "박카스" , "레드불", "몬스터에너지"
-    ,"오로나민C" , "코카콜라" , "깜찍이소다"
+    "조지아" , "비타500", "TOP" ,"핫식스" , "박카스" , "레드불", "몬스터에너지"
+    ,"오로나민C" , "코카콜라" , "깜찍이소다" , "망고", "수박" , "솔의눈"
 );
 
 var view = Object.create(null);  //View 객체
@@ -52,7 +52,7 @@ const createVendingMachine = function(parent, nx , width, height){
     var inputPane = controler.inputPane(model);
     var returnPane = controler.returnPane(model);
     //View를만든다.
-    parent.appendChild( elt("div" , {class : "root"}, vendingmachine , inputPane, returnPane) ) ;
+    parent.appendChild( elc("div" , {class : "root"}, vendingmachine , inputPane, returnPane) ) ;
 }
 
 const randomGenerateGoods = function(howMany){
@@ -62,7 +62,7 @@ const randomGenerateGoods = function(howMany){
         //가격은 500~1000사이 임의로 지정된다.
         let price = Math.floor( (Math.random() * (11-5)) +5) * MINIMUM_CASHUNIT ;
         //이름을 배열 앞에서 부터 하나씩 뽑아온다.
-        let goodsName = goodsNameArray.shift();
+        let goodsName = goodsNameArray.splice(Math.floor(Math.random() * goodsNameArray.length) ,1)[0];
         //초기 재고 수량만큼 상품을 생성한다.
         goodsLists.push(new Goods(i, goodsName, price, INITIAL_STOCKCNT))
     }
@@ -75,23 +75,23 @@ const randomGenerateGoods = function(howMany){
 view.create = function(nx , width, height, model){
     
     //현재금액 상태를 표시하는 Status 패널을 만든다. 
-    view.currentAmount = elt("span", {class :"amt"});
+    view.currentAmount = elc("span", {class :"amt"});
     view.currentAmount.innerHTML = 0;
-    view.amountSatus = elt("div", {class : "amt-status"} , "현재금액 : " , view.currentAmount);
+    view.amountSatus = elc("div", {class : "amt-status"} , "현재금액 : " , view.currentAmount);
     //타이틀
-    view.title = elt("h1", {class : "title"} , "JS 자판기");
+    view.title = elc("h1", {class : "title"} , "JS 자판기");
     //상단프레임의 위의 status패널 및 타이틀을 합친다.
-    view.topFrame = elt("div", { class:"top-frame"}, view.title , view.amountSatus);
+    view.topFrame = elc("div", { class:"top-frame"}, view.title , view.amountSatus);
 
  
-    view.middleFrame = elt("div", {class :"middle-frame"} )  ;    
+    view.middleFrame = elc("div", {class :"middle-frame"} )  ;    
     view.makeGoodsButton(view.middleFrame, model) ;
 
 
-    view.retrunChange = elt("div", {class : "return-change"}, "반환된금액: ")  ;
-    view.retrunGoods = elt("div", {class : "return-goods"}, "구매한 음료: ")  ;
+    view.retrunChange = elc("div", {class : "return-change"}, "반환된금액: ")  ;
+    view.retrunGoods = elc("div", {class : "return-goods"}, "구매한 음료: ")  ;
     
-    view.botomFrame= elt("div", {class:"bottom-frame"}, view.retrunChange , view.retrunGoods);    
+    view.botomFrame= elc("div", {class:"bottom-frame"}, view.retrunChange , view.retrunGoods);    
     
 
     //View에 changeAmount 이벤트 리스너를 등록한다. 
@@ -104,7 +104,7 @@ view.create = function(nx , width, height, model){
         view.showReturnCash(e.data.returnCash);
     }) ;
 
-    return elt( 
+    return elc( 
         "div" , {class : "vendigmachine"} , view.topFrame , view.middleFrame , view.botomFrame 
     );
 
@@ -119,12 +119,12 @@ view.showReturnCash = function(returnCash){
 }
 
 model.create = function(){
-    /*
+    
     _currentAmount ;
     _goodsLists ;
     _returnGoods;
     _inputCashes;
-    */
+    
     //현재금액과 반환 물건 리스트  초기화 
     model._currentAmount = 0;    
     model._returnGoods =[];
@@ -198,9 +198,11 @@ model.returnChange = function(){
 
         i--;
     }
-    returnCashToken.forEach((value,key)=>{
-        retrunCashStr += key +" x " + value + ", "
-    });       
+    var returnCashes = [];
+    returnCashToken.forEach((value,key)=>
+        returnCashes.push(key +" x " + value) 
+    );
+    retrunCashStr = returnCashes.join(" , ");
 
     model.notifyCurrentAmountChange(model._currentAmount);
     model.notifyReturnCashEvent(retrunCashStr) ;
@@ -222,11 +224,11 @@ model.generateTokens = function(howMany , makeSequence){
 
 
 controler.inputPane = function(model){
-    var pane = elt("div", {class : "inputPane"});
+    var pane = elc("div", {class : "inputPane"});
 
     //투입금액을 입력할수있는 버튼을 렌더링.
     for(var i =0 ; i < model._inputCashes.length ; i++){
-        var inputButton = elt("input", { 
+        var inputButton = elc("input", { 
             type :"button", 
             class : "inputCash" , 
             value : model._inputCashes[i]._tokenName 
@@ -242,10 +244,10 @@ controler.inputPane = function(model){
 }
 
 controler.returnPane = function(model){
-    var pane = elt("div", {class : "returnPane"});
+    var pane = elc("div", {class : "returnPane"});
 
     //투입금액을 반환할 수 있는 버튼을 렌더링.    
-    var returnButton = elt("input", { 
+    var returnButton = elc("input", { 
         type :"button", 
         class : "returnCash" , 
         value : "반환"
@@ -266,13 +268,13 @@ view.makeGoodsButton = function(parent, model)
     console.log(model._goodsLists[0]._goodsName);
     for(var i = 0 ; i < model._goodsLists.length ; i++)
     {
-        var goodsButton = elt("input", 
+       
+       var goodsButton = elc("button", 
         {
             type : "button",
-            class : "goodsButton" ,
-            value : `${model._goodsLists[i]._goodsName}\n${model._goodsLists[i]._price}원`            
-        });
-        
+            class : "goodsButton" ,                       
+        }, `${model._goodsLists[i]._goodsName}` , elc("br",null), `${model._goodsLists[i]._price}원`);
+       
         let goodsId = model._goodsLists[i]._goodsID;
         goodsButton.addEventListener("click",function(e){
             model.selectGoods(goodsId);
@@ -282,6 +284,7 @@ view.makeGoodsButton = function(parent, model)
 
 
 }
+*/
 
 
 
