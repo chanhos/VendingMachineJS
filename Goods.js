@@ -1,18 +1,9 @@
 export default class Goods {
-    constructor(name, price) {
-        this.__name = name;
-        this.__price = price;
+    constructor(goodsId , goodsName, price, stock) {
+        this._goodsID = goodsId
+        this._goodsName = goodsName;
+        this._price = price;
+        this._stock = stock
     }
-    get Name() {
-        return this.__name;
-    }
-    set Name(value) {
-        this.__name = value;
-    }
-    get Price() {
-        return this.__price;
-    }
-    set Price(value) {
-        this.__price = value;
-    }
+    
 }
