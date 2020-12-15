@@ -1,5 +1,3 @@
-
-
 /// Element Create : 전달받은 Parameter를 통해서 원하는 HTML 요소를 반환한다.
 // *********parameter************************* 
 // name - HTML 요소명 (String) 
@@ -23,3 +21,4 @@ function elc(name, attributes) {
 	}
 	return node;
 }
+

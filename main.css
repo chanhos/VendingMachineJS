@@ -1,30 +1,105 @@
-.title {
-    background-color: rgba(0, 100, 100, 0.2);
-    margin: 10px;
-    padding: 10px;
-    max-width: 400px;
-    font-size : 12;
-    box-sizing: border-box;
-}
-
-.amt-status {
-    position: relative;
-    left : 400px ;
-    max-width: 200px;
-}
-
-.root {
-    max-width : 800px;
-}
-
-.goodsButton{
-    height: 100px;
-    width: 100px;
-}
-
+/*요소공통 스타일*/
 div {
-    background-color: rgba(0,0,0, 0.1);
+    background-color: rgba(0,0,0,0.1);
     margin: 10px 5px 3px 12px;
     padding: 5px 5px;
     min-height: 1em;
 }
+
+
+.root {
+    max-width : 800px;
+    background-color :transparent;
+}
+
+.vendigmachine {
+    background-color:rgba( 0 ,166, 153);
+}
+
+.top {    
+    background-color:  rgba(245, 183, 177);
+}
+
+.top-title {
+    text-align: center;
+    color : rgba(72, 72, 72);
+}
+
+.top-amt {
+    background-color: rgba(255, 90 ,95);
+    text-align: right;
+    color : rgba(72 72 72);
+     
+}
+
+.top-amt , .top-amt-value {
+    background-color: rgba(255, 90 ,95);   
+    color :rgba(235, 245, 251);
+    text-align: right;   
+    font-weight : 600;
+    font-size: larger;
+}
+
+.middle {
+    background-color: rgba(255, 90 ,95);
+    padding : 20px 50px 20px 50px ;
+}
+
+/*상품버튼*/
+.middle-goodsButton_on{
+    height: 100px;
+    width: 100px;     
+    margin : 10px 20px 20px 10px;     
+    background-color: rgb(235, 245, 251);         
+    border: solid rgba(72, 72, 72) 2px;    
+    
+}
+/*상품버튼 (품절시)*/
+.middle-goodsButton_off{
+    height: 100px;
+    width: 100px;
+    margin : 10px 20px 20px 10px;
+    background-color: rgb(121, 125, 127);
+    border: solid rgba(72, 72, 72) 2px;    
+}
+
+.bottom , .bottom-returnchanges ,.bottom-returngoods{
+    background-color: rgba(255, 90 ,95, 0.8);    
+    color :rgba(235, 245, 251); 
+    text-align: left;
+    font-weight : 800;
+    font-size: 20;
+}
+
+.control{
+    background-color: rgba( 0 ,166, 153);   
+    color :rgba(235, 245, 251);
+    font-weight : 800;
+    font-size: 20;
+    padding-left: 20px ;
+}
+
+.control-input{
+    background-color: rgba(253, 86, 50);
+}
+
+.control-return{
+    background-color: rgba(253, 86, 50);
+}
+
+/*사용자 입력 패널 부분*/
+.control-input-button{
+    margin : 5px ;
+    height: 50px;
+    width: 100px;
+}
+.control-return-changebutton , .control-return-complete{
+    margin : 5px;
+    height: 50px;
+    width: 100px;
+}
+
+
+
+
+
